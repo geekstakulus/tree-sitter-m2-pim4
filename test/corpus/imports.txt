@@ -1,0 +1,101 @@
+====
+Qualified Import in Definition Module
+====
+
+DEFINITION MODULE Hello;
+  IMPORT InOut;
+END Hello.
+---
+
+(compilation_unit
+  (definition_module
+    (kDefinition)
+    (module_header
+      (kModule)
+      (ident)) 
+    (import
+      (qualified_import
+        (kImport)
+        (ident_list
+          (ident))))
+    (module_footer
+      (kEnd)
+      (ident))))
+====
+Qualified Import list in Definition Module
+====
+
+DEFINITION MODULE Hello;
+  IMPORT InOut, Texts, Strings;
+END Hello.
+---
+
+(compilation_unit
+  (definition_module
+    (kDefinition)
+    (module_header
+      (kModule)
+      modulename: (ident)) 
+    (import
+      (qualified_import
+        (kImport)
+        impmodules: (ident_list
+          (ident)
+          (ident)
+          (ident))))
+    (module_footer
+      (kEnd)
+      modulename: (ident))))
+
+====
+Unqualified Import in Definition Module
+====
+
+DEFINITION MODULE Hello;
+  FROM InOut IMPORT WriteInt;
+END Hello.
+---
+
+(compilation_unit
+  (definition_module
+    (kDefinition)
+    (module_header
+      (kModule)
+      modulename: (ident)) 
+    (import
+      (unqualified_import
+        (kFrom)
+        impmodule: (ident)
+        (kImport)
+        idlist: (ident_list
+          (ident))))
+    (module_footer
+      (kEnd)
+      modulename: (ident))))
+====
+Unqualified Import list in Definition Module
+====
+
+DEFINITION MODULE Hello;
+  FROM InOut IMPORT WriteInt, WriteString, WriteLn;
+END Hello.
+---
+
+(compilation_unit
+  (definition_module
+    (kDefinition)
+    (module_header
+      (kModule)
+      modulename: (ident)) 
+    (import
+      (unqualified_import
+        (kFrom)
+        impmodule: (ident)
+        (kImport)
+        idlist: (ident_list
+          (ident)
+          (ident)
+          (ident))))
+    (module_footer
+      (kEnd)
+      modulename: (ident))))
