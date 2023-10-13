@@ -26,7 +26,11 @@ module.exports = grammar({
     //                     {import}
     //                     {definition}
     //                     "END" ident "."
-    definition_module: $ => $.kDefinition,
+    definition_module: $ => seq(
+      $.kDefinition,
+      $.module_header,
+      $.module_footer
+    ),
 
     // program_module = "MODULE" ident [priority] ";"
     //          {import}

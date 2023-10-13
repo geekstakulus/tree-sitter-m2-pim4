@@ -1,5 +1,5 @@
 ====
-module
+Basic Program Module
 ====
 
 MODULE Hello;
@@ -16,7 +16,7 @@ END Hello.
       (ident))))
 
 ====
-IMPLEMENTATION module
+Basic Implementation Module
 ====
 
 IMPLEMENTATION MODULE Hello;
@@ -26,6 +26,23 @@ END Hello.
 (compilation_unit
   (kImplementation)
   (program_module
+    (module_header
+      (kModule)
+      (ident)) 
+    (module_footer
+      (kEnd)
+      (ident))))
+====
+Basic Definition Module
+====
+
+DEFINITION MODULE Hello;
+END Hello.
+---
+
+(compilation_unit
+  (definition_module
+    (kDefinition)
     (module_header
       (kModule)
       (ident)) 
