@@ -48,16 +48,50 @@ module.exports = grammar({
     // "END" ident
     module_footer: $ => seq($.kEnd, field("modulename", $.ident), '.'),
 
-    import: $ => seq(
+    // Instead of the production as defined in the book,
+    // I have decided to split into two productions
+    // qualified import and unqualified import
+    // import = qualified_import 
+    //        | unqualified_import .
+    import: $ => choice(
+      $.qualified_import,
+      $.unqualified_import
+    ),
+
+    // unqualified_import = "FROM" ident "IMPORT" ident_list ";"
+    // ident is the name of the module an ident_list is 
+    // the list of identifiers imported from the specific module
+    unqualified_import: $ => seq(
+      $.kFrom,
+      field("impmodule", $.ident),
       $.kImport,
-      $.ident_list,
+      field("idlist", $.ident_list),
       ";"
     ),
 
-    ident_list: $ => $.ident,
+    // qualified_import = "IMPORT" ident_list ";"
+    // ident_list = list of module names
+    qualified_import: $ => seq(
+      $.kImport,
+      field("impmodules", $.ident_list),
+      ";"
+    ),
+
+    // ident_list = ident {"," ident}
+    ident_list: $ => seq(
+      $.ident,
+      repeat(
+        seq(
+        ",",
+        $.ident
+        )
+      )
+    ),
 
     // keywords
     kEnd: $ => "END",
+
+    kFrom: $ => "FROM",
 
     kImport: $ => "IMPORT",
     kModule: $ => "MODULE",
