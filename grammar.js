@@ -29,6 +29,7 @@ module.exports = grammar({
     definition_module: $ => seq(
       $.kDefinition,
       $.module_header,
+      repeat($.import),
       $.module_footer
     ),
 
@@ -41,13 +42,24 @@ module.exports = grammar({
       $.module_footer
     ),
 
+    // "MODULE" ident
     module_header: $ => seq($.kModule, field("modulename", $.ident), ';'),
-
+    
+    // "END" ident
     module_footer: $ => seq($.kEnd, field("modulename", $.ident), '.'),
+
+    import: $ => seq(
+      $.kImport,
+      $.ident_list,
+      ";"
+    ),
+
+    ident_list: $ => $.ident,
 
     // keywords
     kEnd: $ => "END",
 
+    kImport: $ => "IMPORT",
     kModule: $ => "MODULE",
 
     kDefinition: $ => "DEFINITION",

@@ -49,3 +49,27 @@ END Hello.
     (module_footer
       (kEnd)
       (ident))))
+
+
+====
+Qualified Import in Definition Module
+====
+
+DEFINITION MODULE Hello;
+  IMPORT InOut;
+END Hello.
+---
+
+(compilation_unit
+  (definition_module
+    (kDefinition)
+    (module_header
+      (kModule)
+      (ident)) 
+    (import
+      (kImport)
+      (ident_list
+        (ident)))
+    (module_footer
+      (kEnd)
+      (ident))))
