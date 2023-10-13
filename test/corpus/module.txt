@@ -1,0 +1,34 @@
+====
+module
+====
+
+MODULE Hello;
+END Hello.
+---
+
+(compilation_unit
+  (program_module
+    (module_header
+      (kModule)
+      (ident)) 
+    (module_footer
+      (kEnd)
+      (ident))))
+
+====
+IMPLEMENTATION module
+====
+
+IMPLEMENTATION MODULE Hello;
+END Hello.
+---
+
+(compilation_unit
+  (kImplementation)
+  (program_module
+    (module_header
+      (kModule)
+      (ident)) 
+    (module_footer
+      (kEnd)
+      (ident))))
