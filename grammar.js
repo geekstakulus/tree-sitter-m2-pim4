@@ -22,10 +22,11 @@ module.exports = grammar({
     // definition_module = definition_module_header
     //                     {import}
     //                     {definition}
-    //                     module_footer
+    //                     "END" module_footer
     definition_module: $ => seq(
       $.definition_module_header,
       repeat($.import),
+      $.kEnd,
       $.module_footer
     ),
 
@@ -36,6 +37,7 @@ module.exports = grammar({
     program_module: $ => seq(
       $.program_module_header,
       repeat($.import),
+      $.block,
       $.module_footer
     ),
 
@@ -49,8 +51,8 @@ module.exports = grammar({
       field("modulename", $.ident), ';'
     ),
     
-    // "END" ident
-    module_footer: $ => seq($.kEnd, field("modulename", $.ident), '.'),
+    // ident "."
+    module_footer: $ => seq(field("modulename", $.ident), '.'),
 
     // Instead of the production as defined in the book,
     // I have decided to split into two productions
@@ -81,6 +83,19 @@ module.exports = grammar({
       ";"
     ),
 
+    // block = {declarations}
+    //         [block_body]
+    //         "END"
+    block: $ => seq(
+      optional($.block_body),
+      $.kEnd
+    ),
+
+    // block_body = "BEGIN" statement_seq
+    block_body: $ => seq(
+      $.kBegin
+    ),
+
     // ident_list = ident {"," ident}
     ident_list: $ => seq(
       $.ident,
@@ -97,10 +112,13 @@ module.exports = grammar({
 
     kFrom: $ => "FROM",
 
+    kBegin: $ => "BEGIN",
+
     kImport: $ => "IMPORT",
     kModule: $ => "MODULE",
 
     kDefinition: $ => "DEFINITION",
+
     kImplementation: $ => "IMPLEMENTATION",
 
     ident: $ => token(identifier)

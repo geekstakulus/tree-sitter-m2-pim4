@@ -1,0 +1,20 @@
+====
+Basic Program Module Block
+====
+
+MODULE Hello;
+BEGIN
+END Hello.
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      (ident)) 
+    (block
+      (block_body
+        (kBegin))
+      (kEnd))
+    (module_footer
+      (ident))))

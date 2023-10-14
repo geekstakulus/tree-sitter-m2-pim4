@@ -18,8 +18,8 @@ END Hello.
         (kImport)
         (ident_list
           (ident))))
+    (kEnd)
     (module_footer
-      (kEnd)
       (ident))))
 ====
 Qualified Import list in Definition Module
@@ -43,8 +43,8 @@ END Hello.
           (ident)
           (ident)
           (ident))))
+    (kEnd)
     (module_footer
-      (kEnd)
       modulename: (ident))))
 
 ====
@@ -69,9 +69,10 @@ END Hello.
         (kImport)
         idlist: (ident_list
           (ident))))
+    (kEnd)
     (module_footer
-      (kEnd)
       modulename: (ident))))
+
 ====
 Unqualified Import list in Definition Module
 ====
@@ -96,8 +97,8 @@ END Hello.
           (ident)
           (ident)
           (ident))))
+    (kEnd)
     (module_footer
-      (kEnd)
       modulename: (ident))))
 
 ====
@@ -120,9 +121,11 @@ END Hello.
         (kImport)
         (ident_list
           (ident))))
+    (block
+      (kEnd))
     (module_footer
-      (kEnd)
       (ident))))
+
 ====
 Qualified Import list in Implementation Module
 ====
@@ -145,8 +148,9 @@ END Hello.
           (ident)
           (ident)
           (ident))))
+    (block
+      (kEnd))
     (module_footer
-      (kEnd)
       modulename: (ident))))
 
 ====
@@ -171,9 +175,11 @@ END Hello.
         (kImport)
         idlist: (ident_list
           (ident))))
+    (block
+      (kEnd))
     (module_footer
-      (kEnd)
       modulename: (ident))))
+
 ====
 Unqualified Import list in Implementation Module
 ====
@@ -198,6 +204,111 @@ END Hello.
           (ident)
           (ident)
           (ident))))
+    (block
+      (kEnd))
     (module_footer
-      (kEnd)
+      modulename: (ident))))
+
+====
+Qualified Import in Program Module
+====
+
+MODULE Hello;
+  IMPORT InOut;
+END Hello.
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      (ident)) 
+    (import
+      (qualified_import
+        (kImport)
+        (ident_list
+          (ident))))
+    (block
+      (kEnd))
+    (module_footer
+      (ident))))
+
+====
+Qualified Import list in Program Module
+====
+
+MODULE Hello;
+  IMPORT InOut, Texts, Strings;
+END Hello.
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident)) 
+    (import
+      (qualified_import
+        (kImport)
+        impmodules: (ident_list
+          (ident)
+          (ident)
+          (ident))))
+    (block
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Unqualified Import in Program Module
+====
+
+MODULE Hello;
+  FROM InOut IMPORT WriteInt;
+END Hello.
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident)) 
+    (import
+      (unqualified_import
+        (kFrom)
+        impmodule: (ident)
+        (kImport)
+        idlist: (ident_list
+          (ident))))
+    (block
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Unqualified Import list in Program Module
+====
+
+MODULE Hello;
+  FROM InOut IMPORT WriteInt, WriteString, WriteLn;
+END Hello.
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident)) 
+    (import
+      (unqualified_import
+        (kFrom)
+        impmodule: (ident)
+        (kImport)
+        idlist: (ident_list
+          (ident)
+          (ident)
+          (ident))))
+    (block
+      (kEnd))
+    (module_footer
       modulename: (ident))))
