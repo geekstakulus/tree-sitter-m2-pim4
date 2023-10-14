@@ -110,8 +110,8 @@ END Hello.
 ---
 
 (compilation_unit
-  (implementation_module
-    (implementation_module_header
+  (program_module
+    (program_module_header
       (kImplementation)
       (kModule)
       (ident)) 
@@ -133,8 +133,8 @@ END Hello.
 ---
 
 (compilation_unit
-  (implementation_module
-    (implementation_module_header
+  (program_module
+    (program_module_header
       (kImplementation)
       (kModule)
       modulename: (ident)) 
@@ -159,8 +159,8 @@ END Hello.
 ---
 
 (compilation_unit
-  (implementation_module
-    (implementation_module_header
+  (program_module
+    (program_module_header
       (kImplementation)
       (kModule)
       modulename: (ident)) 
@@ -184,8 +184,8 @@ END Hello.
 ---
 
 (compilation_unit
-  (implementation_module
-    (implementation_module_header
+  (program_module
+    (program_module_header
       (kImplementation)
       (kModule)
       modulename: (ident)) 

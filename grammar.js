@@ -13,11 +13,9 @@ module.exports = grammar({
   rules: {
 
     // compilation_unit = definition_module
-    //                  | implementation_module
     //                  | program_module .
     compilation_unit: $ => choice(
       $.definition_module,
-      $.implementation_module,
       $.program_module
     ),
 
@@ -27,16 +25,6 @@ module.exports = grammar({
     //                     module_footer
     definition_module: $ => seq(
       $.definition_module_header,
-      repeat($.import),
-      $.module_footer
-    ),
-
-    // implementation = implementation_module_header
-    //          {import}
-    //          block
-    //          module_footer
-    implementation_module: $ => seq(
-      $.implementation_module_header,
       repeat($.import),
       $.module_footer
     ),
@@ -54,11 +42,12 @@ module.exports = grammar({
     // "DEFINITION" "MODULE" ident [priority]
     definition_module_header: $ => seq($.kDefinition, $.kModule, field("modulename", $.ident), ';'),
 
-    // "IMPLEMETATION" "MODULE" ident [priority]
-    implementation_module_header: $ => seq($.kImplementation, $.kModule, field("modulename", $.ident), ';'),
-
-    // "MODULE" ident [priority]
-    program_module_header: $ => seq($.kModule, field("modulename", $.ident), ';'),
+    // ["IMPLEMENTATION"] "MODULE" ident [priority]
+    program_module_header: $ => seq(
+      optional($.kImplementation), 
+      $.kModule, 
+      field("modulename", $.ident), ';'
+    ),
     
     // "END" ident
     module_footer: $ => seq($.kEnd, field("modulename", $.ident), '.'),
