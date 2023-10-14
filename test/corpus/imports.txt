@@ -9,8 +9,8 @@ END Hello.
 
 (compilation_unit
   (definition_module
-    (kDefinition)
-    (module_header
+    (definition_module_header
+      (kDefinition)
       (kModule)
       (ident)) 
     (import
@@ -32,8 +32,8 @@ END Hello.
 
 (compilation_unit
   (definition_module
-    (kDefinition)
-    (module_header
+    (definition_module_header
+      (kDefinition)
       (kModule)
       modulename: (ident)) 
     (import
@@ -58,8 +58,8 @@ END Hello.
 
 (compilation_unit
   (definition_module
-    (kDefinition)
-    (module_header
+    (definition_module_header
+      (kDefinition)
       (kModule)
       modulename: (ident)) 
     (import
@@ -83,8 +83,110 @@ END Hello.
 
 (compilation_unit
   (definition_module
-    (kDefinition)
-    (module_header
+    (definition_module_header
+      (kDefinition)
+      (kModule)
+      modulename: (ident)) 
+    (import
+      (unqualified_import
+        (kFrom)
+        impmodule: (ident)
+        (kImport)
+        idlist: (ident_list
+          (ident)
+          (ident)
+          (ident))))
+    (module_footer
+      (kEnd)
+      modulename: (ident))))
+
+====
+Qualified Import in Implementation Module
+====
+
+IMPLEMENTATION MODULE Hello;
+  IMPORT InOut;
+END Hello.
+---
+
+(compilation_unit
+  (implementation_module
+    (implementation_module_header
+      (kImplementation)
+      (kModule)
+      (ident)) 
+    (import
+      (qualified_import
+        (kImport)
+        (ident_list
+          (ident))))
+    (module_footer
+      (kEnd)
+      (ident))))
+====
+Qualified Import list in Implementation Module
+====
+
+IMPLEMENTATION MODULE Hello;
+  IMPORT InOut, Texts, Strings;
+END Hello.
+---
+
+(compilation_unit
+  (implementation_module
+    (implementation_module_header
+      (kImplementation)
+      (kModule)
+      modulename: (ident)) 
+    (import
+      (qualified_import
+        (kImport)
+        impmodules: (ident_list
+          (ident)
+          (ident)
+          (ident))))
+    (module_footer
+      (kEnd)
+      modulename: (ident))))
+
+====
+Unqualified Import in Implementation Module
+====
+
+IMPLEMENTATION MODULE Hello;
+  FROM InOut IMPORT WriteInt;
+END Hello.
+---
+
+(compilation_unit
+  (implementation_module
+    (implementation_module_header
+      (kImplementation)
+      (kModule)
+      modulename: (ident)) 
+    (import
+      (unqualified_import
+        (kFrom)
+        impmodule: (ident)
+        (kImport)
+        idlist: (ident_list
+          (ident))))
+    (module_footer
+      (kEnd)
+      modulename: (ident))))
+====
+Unqualified Import list in Implementation Module
+====
+
+IMPLEMENTATION MODULE Hello;
+  FROM InOut IMPORT WriteInt, WriteString, WriteLn;
+END Hello.
+---
+
+(compilation_unit
+  (implementation_module
+    (implementation_module_header
+      (kImplementation)
       (kModule)
       modulename: (ident)) 
     (import

@@ -13,37 +13,52 @@ module.exports = grammar({
   rules: {
 
     // compilation_unit = definition_module
-    //                  | ["IMPLEMENTATION"] program_module .
+    //                  | implementation_module
+    //                  | program_module .
     compilation_unit: $ => choice(
       $.definition_module,
-      seq(
-        optional($.kImplementation),
-        $.program_module
-      )
+      $.implementation_module,
+      $.program_module
     ),
 
-    // definition_module = "DEFINITION" "MODULE" ident ";"
+    // definition_module = definition_module_header
     //                     {import}
     //                     {definition}
-    //                     "END" ident "."
+    //                     module_footer
     definition_module: $ => seq(
-      $.kDefinition,
-      $.module_header,
+      $.definition_module_header,
       repeat($.import),
       $.module_footer
     ),
 
-    // program_module = "MODULE" ident [priority] ";"
+    // implementation = implementation_module_header
     //          {import}
     //          block
-    //          ident "."
-    program_module: $ => seq(
-      $.module_header,
+    //          module_footer
+    implementation_module: $ => seq(
+      $.implementation_module_header,
+      repeat($.import),
       $.module_footer
     ),
 
-    // "MODULE" ident
-    module_header: $ => seq($.kModule, field("modulename", $.ident), ';'),
+    // program_module = program_module_header
+    //          {import}
+    //          block
+    //          module_footer
+    program_module: $ => seq(
+      $.program_module_header,
+      repeat($.import),
+      $.module_footer
+    ),
+
+    // "DEFINITION" "MODULE" ident [priority]
+    definition_module_header: $ => seq($.kDefinition, $.kModule, field("modulename", $.ident), ';'),
+
+    // "IMPLEMETATION" "MODULE" ident [priority]
+    implementation_module_header: $ => seq($.kImplementation, $.kModule, field("modulename", $.ident), ';'),
+
+    // "MODULE" ident [priority]
+    program_module_header: $ => seq($.kModule, field("modulename", $.ident), ';'),
     
     // "END" ident
     module_footer: $ => seq($.kEnd, field("modulename", $.ident), '.'),

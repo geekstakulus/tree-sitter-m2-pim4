@@ -8,7 +8,7 @@ END Hello.
 
 (compilation_unit
   (program_module
-    (module_header
+    (program_module_header
       (kModule)
       (ident)) 
     (module_footer
@@ -24,9 +24,9 @@ END Hello.
 ---
 
 (compilation_unit
-  (kImplementation)
-  (program_module
-    (module_header
+  (implementation_module
+    (implementation_module_header
+      (kImplementation)
       (kModule)
       (ident)) 
     (module_footer
@@ -42,8 +42,8 @@ END Hello.
 
 (compilation_unit
   (definition_module
-    (kDefinition)
-    (module_header
+    (definition_module_header
+      (kDefinition)
       (kModule)
       (ident)) 
     (module_footer
