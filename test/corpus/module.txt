@@ -11,8 +11,9 @@ END Hello.
     (program_module_header
       (kModule)
       (ident)) 
+    (block
+      (kEnd))
     (module_footer
-      (kEnd)
       (ident))))
 
 ====
@@ -29,8 +30,9 @@ END Hello.
       (kImplementation)
       (kModule)
       (ident)) 
+    (block
+      (kEnd))
     (module_footer
-      (kEnd)
       (ident))))
 ====
 Basic Definition Module
@@ -46,6 +48,6 @@ END Hello.
       (kDefinition)
       (kModule)
       (ident)) 
+    (kEnd)
     (module_footer
-      (kEnd)
       (ident))))
