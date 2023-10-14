@@ -1,0 +1,54 @@
+====
+Empty Const Declaration
+====
+
+MODULE BasicConst;
+  CONST
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (integer))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
