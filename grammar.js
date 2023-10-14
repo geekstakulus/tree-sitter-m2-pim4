@@ -4,13 +4,29 @@ const  octal_digit = /[0-7]/;
 const digit = /[0-9]/;
 const  hex_digit = /[0-9A-F]/;
 
+// string = "'" {character} "'" | digit {hex_digit} "X"
+const string_literal = choice(
+  /"[^"\n]*"/, // double quoted string
+  /'[^'\n]*'/ // single quoted string
+);
+
 // int_literal = digit {digit} | 
 //               octal_digit {octal_digit} ("B" | "C") | 
 //               digit {hex_digit} "H"
 const int_literal = choice(
   seq(digit, repeat(digit)), // decimal number
   seq(octal_digit, repeat(octal_digit), choice("B", "C")), // octal number
+  seq(digit, repeat(hex_digit), 'D'), // double integer number supported by some compilers
   seq(digit, repeat(hex_digit), 'H') // hexadecimal number
+);
+
+// scale_factor = "E" ["+" | "-"] digit {digit}
+const scale_factor = seq('E', optional(choice('+', '-')), digit, repeat(digit));
+
+// real_literal = digit {digit} "." {digit} [scale_factor]
+const real_literal = seq(
+  digit, repeat(digit), '.', 
+  repeat(digit), optional(scale_factor)
 );
 
 // ident = letter {letter | digit}
@@ -146,10 +162,41 @@ module.exports = grammar({
     //          designator [actual_parameters] |
     //          "(" expression ")" |
     //          "NOT" factor
-    factor: $ => $.number,
+    factor: $ => choice(
+      $.number,
+      $.string,
+      $.set_expression
+    ),
 
     // number = integer | real
-    number: $ => $.integer,
+    number: $ => choice(
+      $.integer,
+      $.real
+    ),
+
+    // set_expression = [qualident] "{" [element_list] "}" .
+    set_expression: $ => seq(
+      optional($.qualident),
+      "{",
+      optional($.element_list),
+      "}"
+    ),
+
+    // element_list = element {"," element}
+    element_list: $ => seq(
+      $.element,
+      repeat(
+        seq(",", $.element)
+      )
+    ),
+
+    // element = const_expression [".." const_expression]
+    element: $ => seq(
+      field("lhs", $.const_expression),
+      repeat(
+        seq("..", field("rhs", $.const_expression))
+      )
+    ),
 
     // ident_list = ident {"," ident}
     ident_list: $ => seq(
@@ -161,6 +208,8 @@ module.exports = grammar({
         )
       )
     ),
+
+    qualident: $ => $.ident,
 
     // keywords
     kEnd: $ => "END",
@@ -177,7 +226,9 @@ module.exports = grammar({
 
     kImplementation: $ => "IMPLEMENTATION",
 
+    string: $ => token(string_literal),
     ident: $ => token(identifier),
-    integer: $ => token(int_literal)
+    integer: $ => token(int_literal),
+    real: $ => token(real_literal)
   }
 });

@@ -1,0 +1,172 @@
+====
+Single Ident Empty Set Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = {} ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (set_expression)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Qualident Empty Set Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = MySet{} ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (set_expression
+                        (qualident
+                          (ident)))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Qualident Single Element Set Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = MySet{45} ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (set_expression
+                        (qualident
+                          (ident))
+                          (element_list
+                            (element
+                              lhs: (const_expression
+                                (expression
+                                  (simple_expression
+                                    (term
+                                      (factor
+                                        (number
+                                          (integer))))))))))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+
+====
+Single Ident Qualident Element List Set Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = MySet{45, 34, 98, 12} ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (set_expression
+                        (qualident
+                          (ident))
+                          (element_list
+                            (element
+                              lhs: (const_expression
+                                (expression
+                                  (simple_expression
+                                    (term
+                                      (factor
+                                        (number
+                                          (integer))))))))
+                            (element
+                              lhs: (const_expression
+                                (expression
+                                  (simple_expression
+                                    (term
+                                      (factor
+                                        (number
+                                          (integer))))))))
+                            (element
+                              lhs: (const_expression
+                                (expression
+                                  (simple_expression
+                                    (term
+                                      (factor
+                                        (number
+                                          (integer))))))))
+                            (element
+                              lhs: (const_expression
+                                (expression
+                                  (simple_expression
+                                    (term
+                                      (factor
+                                        (number
+                                          (integer))))))))))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))

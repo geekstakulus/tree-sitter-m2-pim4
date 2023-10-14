@@ -22,7 +22,7 @@ END BasicConst.
       modulename: (ident))))
 
 ====
-Single Ident Const Declaration
+Single Ident Integer Const Declaration
 ====
 
 MODULE BasicConst;
@@ -49,6 +49,452 @@ END BasicConst.
                     (factor
                       (number
                         (integer))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Octal Integer Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123B ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (integer))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Character Integer Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123C ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (integer))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Double Integer Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = 2345123D ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (integer))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Hexadecimal Integer Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = 0AFH ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (integer))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Real Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123.23 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (real))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Real Const Declaration Without Decimal
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123. ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (real))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Real Const Declaration With Scale Factor
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123.23E23 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (real))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Real Const Declaration With Scale Factor No Decimal
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123.E23 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (real))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Real Const Declaration With Scale Factor Positive
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123.E+23 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (real))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Real Const Declaration With Scale Factor Negative
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123.E-23 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (real))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Real Const Declaration With Decimal and Scale Factor Positive
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123.12E+23 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (real))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Real Const Declaration With Decimal and Scale Factor Negative
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123.98E-23 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (number
+                        (real))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident String Const Declaration Single Quotes
+====
+
+MODULE BasicConst;
+  CONST MyConst = 'Hello, World' ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (string)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident String Const Declaration Double Quotes
+====
+
+MODULE BasicConst;
+  CONST MyConst = "Hello, World" ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (expression
+                (simple_expression
+                  (term
+                    (factor
+                      (string)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
