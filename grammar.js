@@ -165,7 +165,10 @@ module.exports = grammar({
     factor: $ => choice(
       $.number,
       $.string,
-      $.set_expression
+      $.set_expression,
+      seq(
+        $.designator
+      ),
     ),
 
     // number = integer | real
@@ -209,7 +212,16 @@ module.exports = grammar({
       )
     ),
 
-    qualident: $ => $.ident,
+    // designator = qualident {"." ident | "[" expression_list "]" "^"}
+    designator: $ => $.qualident,
+
+    // qualident = ident {"." ident}
+    qualident: $ => seq(
+      field("qualifier_or_id", $.ident),
+      repeat(
+        seq(".", field("qualified", $.ident))
+      )
+    ),
 
     // keywords
     kEnd: $ => "END",
