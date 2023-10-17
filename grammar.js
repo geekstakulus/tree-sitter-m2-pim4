@@ -127,11 +127,14 @@ module.exports = grammar({
     ),
 
     // declaration = const_declaration
-    //             | type_declaration
+    //             | type_decl
     //             | var_declaration
     //             | procedure_declaration
     //             | module_declaration
-    declaration: $ => $.const_declaration,
+    declaration: $ => choice(
+      $.const_declaration,
+      $.type_decl
+    ),
 
     // const_declaration = "CONST" {constant_declaration}
     const_declaration: $ => seq(
@@ -219,6 +222,23 @@ module.exports = grammar({
       seq("(", field("paren_expr", $.const_expression), ")"),
       seq($.kNot, $.const_factor)
     ),
+
+    // type_decl = "TYPE" {type_declaration}
+    type_decl: $ => seq($.kType, repeat($.type_declaration)),
+
+    // type_declaration = ident "=" type .
+    type_declaration: $ => seq($.ident, "=", $.type, ";"),
+
+    // type = simple_type
+    //      | array_type
+    //      | record_type
+    //      | set_type
+    //      | pointer_type
+    //      | procedure_type
+    type: $ => $.simple_type,
+
+    // simple_type = qualident | enumeration | subrange_type
+    simple_type: $ => $.qualident,
 
     // expression = simple_expresion [relation simple_expression]
     expression: $ => $.simple_expression,
@@ -326,6 +346,7 @@ module.exports = grammar({
     kNot: $ => "NOT",
 
     kFrom: $ => "FROM",
+    kType: $ => "TYPE",
 
     kBegin: $ => "BEGIN",
     kConst: $ => "CONST",

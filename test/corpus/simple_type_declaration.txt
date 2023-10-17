@@ -1,0 +1,80 @@
+===
+Empty Type Declaration
+===
+MODULE TypeDeclaration;
+  TYPE
+END TypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+      
+===
+Simple Type Declaration
+===
+MODULE TypeDeclaration;
+  TYPE
+    OpCode = INTEGER ;
+END TypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (simple_type
+                (qualident
+                  qualifier_or_id: (ident)))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+      
+===
+Simple Type Declaration Qualified Qualident
+===
+MODULE TypeDeclaration;
+  TYPE
+    OpCode = ModName.ASMOpCode ;
+END TypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (simple_type
+                (qualident
+                  qualifier_or_id: (ident)
+                  qualified: (ident)))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
