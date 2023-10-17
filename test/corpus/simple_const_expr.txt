@@ -1,0 +1,285 @@
+====
+Plus Simple Const Expr 
+====
+
+MODULE BasicConst;
+  CONST MyConst = +123 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (opPlus)
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Minus Simple Const Expr 
+====
+
+MODULE BasicConst;
+  CONST MyConst = -123 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (opMinus)
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Simple Const Expression Plus Simple Const Expression
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 + Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer))))
+                (add_operator
+                  (opPlus))
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Simple Const Expression Minus Simple Const Expression
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 - Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer))))
+                (add_operator
+                  (opMinus))
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Simple Numeric Const Expression Plus Simple Const Expression
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 + 561 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer))))
+                (add_operator
+                  (opPlus))
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Simple Numeric Const Expression Minus Simple Const Expression
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123.34 - 56.09 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (real))))
+                (add_operator
+                  (opMinus))
+                (const_term
+                  (const_factor
+                    (number
+                      (real)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Simple Const Expression OR Simple Const Expression
+====
+
+MODULE BasicConst;
+  CONST MyConst = Id1 OR FALSE ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident))))
+                (add_operator
+                  (kOr))
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Simple Numeric Const Expression OR Simple Const Expression
+====
+
+MODULE BasicConst;
+  CONST MyConst = 45 OR 98 ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer))))
+                (add_operator
+                  (kOr))
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))

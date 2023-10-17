@@ -1,0 +1,150 @@
+====
+Parenthetical Multiply Const Factor Expression
+====
+
+MODULE ParenConst;
+  CONST MyConst = (123 * Ident) ;
+END ParenConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    paren_expr: (const_expression
+                      (simple_const_expr
+                        (const_term
+                          (const_factor
+                            (number
+                              (integer)))
+                          (mult_operator
+                            (opTimes))
+                          (const_factor
+                            (qualident
+                              qualifier_or_id: (ident)))))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Minus Parenthetical Multiply Const Factor Expression
+====
+
+MODULE ParenConst;
+  CONST MyConst = -(123 * Ident) ;
+END ParenConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (opMinus)
+                (const_term
+                  (const_factor
+                    paren_expr: (const_expression
+                      (simple_const_expr
+                        (const_term
+                          (const_factor
+                            (number
+                              (integer)))
+                          (mult_operator
+                            (opTimes))
+                          (const_factor
+                            (qualident
+                              qualifier_or_id: (ident)))))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Parenthetical Simple Const Factor Expression
+====
+
+MODULE ParenConst;
+  CONST MyConst = (123) ;
+END ParenConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    paren_expr: (const_expression
+                      (simple_const_expr
+                        (const_term
+                          (const_factor
+                            (number
+                              (integer)))))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Parenthetical Simple Ident Const Factor Expression
+====
+
+MODULE ParenConst;
+  CONST MyConst = (Ident) ;
+END ParenConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    paren_expr: (const_expression
+                      (simple_const_expr
+                        (const_term
+                          (const_factor
+                            (qualident
+                              qualifier_or_id: (ident)))))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))

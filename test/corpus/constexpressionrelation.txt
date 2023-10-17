@@ -1,0 +1,303 @@
+====
+Const Expression Equal
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 = Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))
+              (relation
+                (opEqual))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Const Expression Not Equal
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 # Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))
+              (relation
+                (opNotEqual))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Const Expression Not Equal
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 <> Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))
+              (relation
+                (opNotEqual))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Const Expression Less Than
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 < Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))
+              (relation
+                (opLessThan))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Const Expression Less Or Equal
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 <= Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))
+              (relation
+                (opLessOrEqual))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Const Expression Greater Than
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 > Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))
+              (relation
+                (opGreaterThan))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Const Expression Greater Or Equal Than
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 >= Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))
+              (relation
+                (opGreaterOrEqual))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Const Expression IN
+====
+
+MODULE BasicConst;
+  CONST MyConst = 123 IN Ident ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))
+              (relation
+                (kIn))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))

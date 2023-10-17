@@ -145,13 +145,65 @@ module.exports = grammar({
     ),
 
     // const_expression = simple_const_expr [relation simple_const_expr]
-    const_expression: $ => $.simple_const_expr,
+    const_expression: $ => seq(
+      $.simple_const_expr,
+      optional(
+        seq($.relation, $.simple_const_expr)
+      )
+    ),
+
+    // relation = "=" | "#" | "<>" | "<" | "<=" | ">" | ">=" | "IN"
+    relation: $ => choice(
+      $.opEqual,
+      $.opNotEqual,
+      $.opLessThan,
+      $.opLessOrEqual,
+      $.opGreaterThan,
+      $.opGreaterOrEqual,
+      $.kIn
+    ),
 
     // simple_const_expr = ["+" | "-"] const_term {add_operator const_term}
-    simple_const_expr: $ => $.const_term,
+    simple_const_expr: $ => seq(
+      optional(
+        choice($.opPlus, $.opMinus)
+      ),
+      $.const_term,
+      repeat(
+        seq(
+          $.add_operator,
+          $.const_term
+        )
+      )
+    ),
+
+    // add_operator = "+" | "-" | "OR"
+    add_operator: $ => choice(
+      $.opPlus,
+      $.opMinus,
+      $.kOr
+    ),
 
     // const_term = const_factor {mult_operator const_factor}
-    const_term: $ => $.const_factor,
+    const_term: $ => seq(
+      $.const_factor,
+      repeat(
+        seq(
+          $.mult_operator,
+          $.const_factor
+        )
+      )
+    ),
+
+    // mult_operator = "*" | "/" | "DIV" | "MOD" | "AND" | "&" .
+    mult_operator: $ => choice(
+      $.opTimes,
+      $.opDivide,
+      $.kDiv,
+      $.kMod,
+      $.kAnd,
+      $.opAnd
+    ),
 
     // const_factor = qualident | 
     //                number | 
@@ -163,7 +215,9 @@ module.exports = grammar({
       $.qualident,
       $.number,
       $.string,
-      $.set_expression
+      $.set_expression,
+      seq("(", field("paren_expr", $.const_expression), ")"),
+      seq($.kNot, $.const_factor)
     ),
 
     // expression = simple_expresion [relation simple_expression]
@@ -242,8 +296,34 @@ module.exports = grammar({
       )
     ),
 
+    // operators
+
+    // relational
+    opEqual: $ => "=",
+    opNotEqual: $ => choice("#", "<>"),
+    opLessThan: $ => "<",
+    opLessOrEqual: $ => "<=",
+    opGreaterThan: $ => ">",
+    opGreaterOrEqual: $ => ">=",
+
+    // add operators
+    opPlus: $ => "+",
+    opMinus: $ => "-",
+
+    // mult operators
+    opTimes: $ => "*",
+    opDivide: $ => "/",
+    opAnd: $ => "&",
+
     // keywords
+    kIn: $ => "IN",
+    kOr: $ => "OR",
+
+    kAnd: $ => "AND",
+    kDiv: $ => "DIV",
     kEnd: $ => "END",
+    kMod: $ => "MOD",
+    kNot: $ => "NOT",
 
     kFrom: $ => "FROM",
 
@@ -257,6 +337,7 @@ module.exports = grammar({
 
     kImplementation: $ => "IMPLEMENTATION",
 
+    // literals
     string: $ => token(string_literal),
     ident: $ => token(identifier),
     integer: $ => token(int_literal),
