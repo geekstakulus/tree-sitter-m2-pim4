@@ -235,10 +235,21 @@ module.exports = grammar({
     //      | set_type
     //      | pointer_type
     //      | procedure_type
-    type: $ => $.simple_type,
+    type: $ => choice(
+      $.simple_type,
+      $.array_type
+    ),
 
     // simple_type = qualident | enumeration | subrange_type
     simple_type: $ => $.qualident,
+
+    // array_type = "ARRAY" simple_type "OF" type .
+    array_type: $ => seq(
+      $.kArray,
+      $.simple_type,
+      $.kOf,
+      $.type
+    ),
 
     // expression = simple_expresion [relation simple_expression]
     expression: $ => $.simple_expression,
@@ -337,6 +348,7 @@ module.exports = grammar({
 
     // keywords
     kIn: $ => "IN",
+    kOf: $ => "OF",
     kOr: $ => "OR",
 
     kAnd: $ => "AND",
@@ -348,6 +360,7 @@ module.exports = grammar({
     kFrom: $ => "FROM",
     kType: $ => "TYPE",
 
+    kArray: $ => "ARRAY",
     kBegin: $ => "BEGIN",
     kConst: $ => "CONST",
 

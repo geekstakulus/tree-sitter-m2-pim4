@@ -1,0 +1,35 @@
+===
+Array Type Declaration
+===
+MODULE ArrayTypeDeclaration;
+  TYPE
+    OpCodes = ARRAY OpCodeRange OF OpCode;
+END ArrayTypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (array_type
+                (kArray)
+                (simple_type
+                  (qualident
+                    qualifier_or_id: (ident)))
+                (kOf)
+                (type
+                  (simple_type
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
