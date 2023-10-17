@@ -144,8 +144,27 @@ module.exports = grammar({
       field("const_id", $.ident), "=", $.const_expression, ";"
     ),
 
-    // const_expression = expression
-    const_expression: $ => $.expression,
+    // const_expression = simple_const_expr [relation simple_const_expr]
+    const_expression: $ => $.simple_const_expr,
+
+    // simple_const_expr = ["+" | "-"] const_term {add_operator const_term}
+    simple_const_expr: $ => $.const_term,
+
+    // const_term = const_factor {mult_operator const_factor}
+    const_term: $ => $.const_factor,
+
+    // const_factor = qualident | 
+    //                number | 
+    //                string | 
+    //                set | 
+    //                "(" const_expression ")" | 
+    //                "NOT" const_factor
+    const_factor: $ => choice(
+      $.qualident,
+      $.number,
+      $.string,
+      $.set_expression
+    ),
 
     // expression = simple_expresion [relation simple_expression]
     expression: $ => $.simple_expression,

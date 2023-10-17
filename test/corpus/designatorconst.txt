@@ -1,5 +1,5 @@
 ====
-Single Ident Ident Designator Const Declaration
+Single Ident Qualident Const Declaration
 ====
 
 MODULE BasicConst;
@@ -20,19 +20,17 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (designator
-                        (qualident
-                          qualifier_or_id: (ident)))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
 
 ====
-Single Ident Qualified Designator Const Declaration
+Single Ident Qualified Qualident Const Declaration
 ====
 
 MODULE BasicConst;
@@ -53,14 +51,12 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (designator
-                        (qualident
-                          qualifier_or_id: (ident)
-                          qualified: (ident)))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (qualident
+                      qualifier_or_id: (ident)
+                      qualified: (ident)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))

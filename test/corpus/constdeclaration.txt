@@ -43,12 +43,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (integer))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -75,12 +74,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (integer))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -107,12 +105,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (integer))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -139,12 +136,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (integer))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -171,12 +167,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (integer))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (integer)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -203,12 +198,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (real))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (real)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -235,12 +229,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (real))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (real)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -267,12 +260,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (real))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (real)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -299,12 +291,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (real))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (real)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -331,12 +322,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (real))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (real)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -363,12 +353,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (real))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (real)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -395,12 +384,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (real))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (real)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -427,12 +415,11 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (number
-                        (real))))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (number
+                      (real)))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -459,11 +446,10 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (string)))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (string))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
@@ -490,11 +476,10 @@ END BasicConst.
           (constant_declaration
             const_id: (ident)
             (const_expression
-              (expression
-                (simple_expression
-                  (term
-                    (factor
-                      (string)))))))))
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (string))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
