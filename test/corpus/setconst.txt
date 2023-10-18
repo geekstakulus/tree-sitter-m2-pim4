@@ -161,3 +161,50 @@ END BasicConst.
       (kEnd))
     (module_footer
       modulename: (ident))))
+
+====
+Single Ident Qualident Range Element Set Const Declaration
+====
+
+MODULE BasicConst;
+  CONST MyConst = MySet{1..45} ;
+END BasicConst.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (const_declaration
+          (kConst)
+          (constant_declaration
+            const_id: (ident)
+            (const_expression
+              (simple_const_expr
+                (const_term
+                  (const_factor
+                    (set_expression
+                      (qualident
+                        qualifier_or_id: (ident))
+                        (element_list
+                          (element
+                            lhs: (const_expression
+                              (simple_const_expr
+                                (const_term
+                                  (const_factor
+                                    (number
+                                      (integer))))))
+                            (opRange)
+                            rhs: (const_expression
+                                   (simple_const_expr
+                                     (const_term
+                                       (const_factor
+                                         (number
+                                           (integer))))))))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))

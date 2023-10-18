@@ -241,7 +241,11 @@ module.exports = grammar({
     ),
 
     // simple_type = qualident | enumeration | subrange_type
-    simple_type: $ => $.qualident,
+    simple_type: $ => choice(
+      $.qualident,
+      $.enumeration,
+      $.subrange_type
+    ),
 
     // array_type = "ARRAY" simple_type "OF" type .
     array_type: $ => seq(
@@ -249,6 +253,28 @@ module.exports = grammar({
       $.simple_type,
       $.kOf,
       $.type
+    ),
+
+    // enumeration = "(" ident_list ")"
+    enumeration: $ => seq(
+      "(",
+      $.ident_list,
+      ")"
+    ),
+
+    // ident_list = ident {"," ident}
+    ident_list: $ => seq(
+      $.ident, 
+      repeat(",", $.ident)
+    ),
+
+    // subrange_type = "[" const_expression ".." const_expression "]"
+    subrange_type: $ => seq(
+      "[",
+      field("from", $.const_expression),
+      $.opRange,
+      field("to", $.const_expression),
+      "]"
     ),
 
     // expression = simple_expresion [relation simple_expression]
@@ -301,7 +327,7 @@ module.exports = grammar({
     element: $ => seq(
       field("lhs", $.const_expression),
       repeat(
-        seq("..", field("rhs", $.const_expression))
+        seq($.opRange, field("rhs", $.const_expression))
       )
     ),
 
@@ -345,6 +371,8 @@ module.exports = grammar({
     opTimes: $ => "*",
     opDivide: $ => "/",
     opAnd: $ => "&",
+
+    opRange: $ => "..",
 
     // keywords
     kIn: $ => "IN",

@@ -21,7 +21,7 @@ END TypeDeclaration.
       modulename: (ident))))
       
 ===
-Simple Type Declaration
+Simple Type Declaration Qualident
 ===
 MODULE TypeDeclaration;
   TYPE
@@ -75,6 +75,79 @@ END TypeDeclaration.
                 (qualident
                   qualifier_or_id: (ident)
                   qualified: (ident)))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Simple Type Declaration Enumeration
+===
+MODULE TypeDeclaration;
+  TYPE
+    OpCode = (one, two, three) ;
+END TypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (simple_type
+                (enumeration
+                  (ident_list
+                    (ident)
+                    (ident)
+                    (ident))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Simple Type Declaration Subrange
+===
+MODULE TypeDeclaration;
+  TYPE
+    OpCode = [0 .. 30];
+END TypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (simple_type
+                (subrange_type
+                  from: (const_expression
+                    (simple_const_expr
+                      (const_term
+                        (const_factor
+                          (number
+                            (integer))))))
+                  (opRange)
+                  to: (const_expression
+                    (simple_const_expr
+                      (const_term
+                        (const_factor
+                          (number
+                            (integer))))))))))))
       (kEnd))
     (module_footer
       modulename: (ident))))
