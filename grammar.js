@@ -238,7 +238,8 @@ module.exports = grammar({
     type: $ => choice(
       $.simple_type,
       $.array_type,
-      $.set_type
+      $.set_type,
+      $.pointer_type
     ),
 
     // simple_type = qualident | enumeration | subrange_type
@@ -280,6 +281,9 @@ module.exports = grammar({
 
     // set_type = "SET" "OF" simple_type
     set_type: $ => seq($.kSet, $.kOf, $.simple_type),
+
+    // pointer_type = "POINTER" "TO" type
+    pointer_type: $ => seq($.kPointer, $.kTo, $.type),
 
     // expression = simple_expresion [relation simple_expression]
     expression: $ => $.simple_expression,
@@ -382,6 +386,7 @@ module.exports = grammar({
     kIn: $ => "IN",
     kOf: $ => "OF",
     kOr: $ => "OR",
+    kTo: $ => "TO",
 
     kAnd: $ => "AND",
     kDiv: $ => "DIV",
@@ -399,6 +404,8 @@ module.exports = grammar({
 
     kImport: $ => "IMPORT",
     kModule: $ => "MODULE",
+
+    kPointer: $ => "POINTER",
 
     kDefinition: $ => "DEFINITION",
 

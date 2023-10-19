@@ -1,0 +1,68 @@
+===
+Pointer to Qualident
+===
+MODULE PointerDeclaration;
+  TYPE
+    PInt = POINTER TO INTEGER;
+END PointerDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (pointer_type
+                (kPointer)
+                (kTo)
+                (type
+                  (simple_type
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Pointer to SET
+===
+MODULE PointerDeclaration;
+  TYPE
+    PInt = POINTER TO SET OF INTEGER;
+END PointerDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (pointer_type
+                (kPointer)
+                (kTo)
+                (type
+                  (set_type
+                    (kSet)
+                    (kOf)
+                    (simple_type
+                      (qualident
+                        qualifier_or_id: (ident))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
