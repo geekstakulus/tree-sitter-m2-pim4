@@ -1,0 +1,143 @@
+===
+Set Type Declaration Qualident
+===
+MODULE SetTypeDeclaration;
+  TYPE
+    set = SET OF OpCode ;
+END SetTypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (set_type
+                (kSet)
+                (kOf)
+                (simple_type
+                  (qualident
+                    qualifier_or_id: (ident))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Set Type Declaration Qualified Qualident
+===
+MODULE SetTypeDeclaration;
+  TYPE
+    set = SET OF Machine.OpCode ;
+END SetTypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (set_type
+                (kSet)
+                (kOf)
+                (simple_type
+                  (qualident
+                    qualifier_or_id: (ident)
+                    qualified: (ident))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Set Type Declaration Enumeration
+===
+MODULE SetTypeDeclaration;
+  TYPE
+    set = SET OF (One, Two, Three) ;
+END SetTypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (set_type
+                (kSet)
+                (kOf)
+                (simple_type
+                  (enumeration
+                    (ident_list
+                      (ident)
+                      (ident)
+                      (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Set Type Declaration Subrange
+===
+MODULE SetTypeDeclaration;
+  TYPE
+    set = SET OF [0 .. 34];
+END SetTypeDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (set_type
+                (kSet)
+                (kOf)
+                (simple_type
+                  (subrange_type
+                    from: (const_expression
+                      (simple_const_expr
+                        (const_term
+                          (const_factor
+                            (number
+                              (integer))))))
+                    (opRange)
+                    to: (const_expression
+                          (simple_const_expr
+                            (const_term
+                              (const_factor
+                                (number
+                                  (integer)))))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))

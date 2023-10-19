@@ -237,7 +237,8 @@ module.exports = grammar({
     //      | procedure_type
     type: $ => choice(
       $.simple_type,
-      $.array_type
+      $.array_type,
+      $.set_type
     ),
 
     // simple_type = qualident | enumeration | subrange_type
@@ -245,14 +246,6 @@ module.exports = grammar({
       $.qualident,
       $.enumeration,
       $.subrange_type
-    ),
-
-    // array_type = "ARRAY" simple_type "OF" type .
-    array_type: $ => seq(
-      $.kArray,
-      $.simple_type,
-      $.kOf,
-      $.type
     ),
 
     // enumeration = "(" ident_list ")"
@@ -276,6 +269,17 @@ module.exports = grammar({
       field("to", $.const_expression),
       "]"
     ),
+
+    // array_type = "ARRAY" simple_type "OF" type .
+    array_type: $ => seq(
+      $.kArray,
+      $.simple_type,
+      $.kOf,
+      $.type
+    ),
+
+    // set_type = "SET" "OF" simple_type
+    set_type: $ => seq($.kSet, $.kOf, $.simple_type),
 
     // expression = simple_expresion [relation simple_expression]
     expression: $ => $.simple_expression,
@@ -384,6 +388,7 @@ module.exports = grammar({
     kEnd: $ => "END",
     kMod: $ => "MOD",
     kNot: $ => "NOT",
+    kSet: $ => "SET",
 
     kFrom: $ => "FROM",
     kType: $ => "TYPE",
