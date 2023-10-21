@@ -1,5 +1,5 @@
 {
-  "name": "tree-sitter-m2-pim4",
+  "name": "tree-sitter-m2pim4",
   "version": "0.1.0",
   "description": "Tree Sitter grammar for Modula-2 (PIM-4)",
   "main": "bindings/node",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/geekstakulus/tree-sitter-m2-pim4.git"
+    "url": "git+https://github.com/geekstakulus/tree-sitter-m2pim4.git"
   },
   "keywords": [
     "tree-sitter",
@@ -21,9 +21,9 @@
   "author": "Fidel H Viegas",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/geekstakulus/tree-sitter-m2-pim4/issues"
+    "url": "https://github.com/geekstakulus/tree-sitter-m2pim4/issues"
   },
-  "homepage": "https://github.com/geekstakulus/tree-sitter-m2-pim4#readme",
+  "homepage": "https://github.com/geekstakulus/tree-sitter-m2pim4#readme",
   "dependencies": {
     "nan": "^2.14.1",
     "node-gyp": "^9.4.0"
