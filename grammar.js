@@ -239,7 +239,8 @@ module.exports = grammar({
       $.simple_type,
       $.array_type,
       $.set_type,
-      $.pointer_type
+      $.pointer_type,
+      $.procedure_type
     ),
 
     // simple_type = qualident | enumeration | subrange_type
@@ -284,6 +285,36 @@ module.exports = grammar({
 
     // pointer_type = "POINTER" "TO" type
     pointer_type: $ => seq($.kPointer, $.kTo, $.type),
+    
+    // pointer_type = "PROCEDURE" [formal_type_list]
+    procedure_type: $ => seq($.kProcedure, optional($.formal_type_list)),
+
+    // formal_type_list = "(" [formal_type_param {"," formal_type_param] ")" [":" qualident]
+    formal_type_list: $ => seq(
+      "(",
+      optional(
+        seq(
+          $.formal_type_param, 
+          repeat(seq(",", $.formal_type_param))
+        )
+      ),
+      ")",
+      optional($.proc_return_type)
+    ),
+
+    // formal_type_param = ["VAR"] formal_type
+    formal_type_param: $ => seq(optional($.kVar), $.formal_type),
+
+    // proc_return_type = ":" qualident
+    proc_return_type: $ => seq(":", $.qualident),
+
+    // formal_type = ["ARRAY" "OF"] qualident
+    formal_type: $ => seq(
+      optional(
+        seq($.kArray, $.kOf)
+      ),
+      $.qualident
+    ),
 
     // expression = simple_expresion [relation simple_expression]
     expression: $ => $.simple_expression,
@@ -394,6 +425,7 @@ module.exports = grammar({
     kMod: $ => "MOD",
     kNot: $ => "NOT",
     kSet: $ => "SET",
+    kVar: $ => "VAR",
 
     kFrom: $ => "FROM",
     kType: $ => "TYPE",
@@ -406,6 +438,8 @@ module.exports = grammar({
     kModule: $ => "MODULE",
 
     kPointer: $ => "POINTER",
+
+    kProcedure: $ => "PROCEDURE",
 
     kDefinition: $ => "DEFINITION",
 

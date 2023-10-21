@@ -1,0 +1,349 @@
+===
+Parameterless Procedure Type
+===
+MODULE ProcedureDeclaration;
+  TYPE
+    proc = PROCEDURE;
+END ProcedureDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (procedure_type
+                (kProcedure))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+      
+===
+Parameterless Procedure Type with Parenthesis
+===
+MODULE ProcedureDeclaration;
+  TYPE
+    proc = PROCEDURE();
+END ProcedureDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (procedure_type
+                (kProcedure)
+                (formal_type_list))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Single Array Parameter Procedure Type
+===
+MODULE ProcedureDeclaration;
+  TYPE
+    proc = PROCEDURE(ARRAY OF INTEGER);
+END ProcedureDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (procedure_type
+                (kProcedure)
+                (formal_type_list
+                  (formal_type_param
+                    (formal_type
+                      (kArray)
+                      (kOf)
+                      (qualident
+                        qualifier_or_id: (ident))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Single Parameter Procedure Type
+===
+MODULE ProcedureDeclaration;
+  TYPE
+    proc = PROCEDURE(INTEGER);
+END ProcedureDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (procedure_type
+                (kProcedure)
+                (formal_type_list
+                  (formal_type_param
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Single Qualified Parameter Procedure Type
+===
+MODULE ProcedureDeclaration;
+  IMPORT Mod;
+  TYPE
+    proc = PROCEDURE(Mod.Float);
+END ProcedureDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (import
+      (qualified_import
+        (kImport)
+          impmodules: (ident_list
+            (ident))))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (procedure_type
+                (kProcedure)
+                (formal_type_list
+                  (formal_type_param
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident)
+                        qualified: (ident))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Multiple Parameters Procedure Type
+===
+MODULE ProcedureDeclaration;
+  IMPORT Mod;
+  TYPE
+    proc = PROCEDURE(Mod.Float, INTEGER);
+END ProcedureDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (import
+      (qualified_import
+        (kImport)
+          impmodules: (ident_list
+            (ident))))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (procedure_type
+                (kProcedure)
+                (formal_type_list
+                  (formal_type_param
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident)
+                        qualified: (ident))))
+                  (formal_type_param
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Multiple Parameters with VAR Procedure Type
+===
+MODULE ProcedureDeclaration;
+  IMPORT Mod;
+  TYPE
+    proc = PROCEDURE(Mod.Float, VAR INTEGER);
+END ProcedureDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (import
+      (qualified_import
+        (kImport)
+          impmodules: (ident_list
+            (ident))))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (procedure_type
+                (kProcedure)
+                (formal_type_list
+                  (formal_type_param
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident)
+                        qualified: (ident))))
+                  (formal_type_param
+                    (kVar)
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Multiple Parameters with VARs Procedure Type
+===
+MODULE ProcedureDeclaration;
+  IMPORT Mod;
+  TYPE
+    proc = PROCEDURE(VAR Mod.Float, VAR INTEGER);
+END ProcedureDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (import
+      (qualified_import
+        (kImport)
+          impmodules: (ident_list
+            (ident))))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (procedure_type
+                (kProcedure)
+                (formal_type_list
+                  (formal_type_param
+                    (kVar)
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident)
+                        qualified: (ident))))
+                  (formal_type_param
+                    (kVar)
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident))))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Function Procedure Type With Parameters
+===
+MODULE ProcedureDeclaration;
+  IMPORT Mod;
+  TYPE
+    proc = PROCEDURE(VAR Mod.Float, VAR INTEGER) : BOOLEAN;
+END ProcedureDeclaration.
+
+---
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (import
+      (qualified_import
+        (kImport)
+          impmodules: (ident_list
+            (ident))))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (procedure_type
+                (kProcedure)
+                (formal_type_list
+                  (formal_type_param
+                    (kVar)
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident)
+                        qualified: (ident))))
+                  (formal_type_param
+                    (kVar)
+                    (formal_type
+                      (qualident
+                        qualifier_or_id: (ident))))
+                  (proc_return_type
+                    (qualident
+                      qualifier_or_id: (ident)))))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
