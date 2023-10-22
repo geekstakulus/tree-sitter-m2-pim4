@@ -1,0 +1,52 @@
+====
+Empty VAR Declaration
+====
+
+MODULE BasicVar;
+  VAR
+END BasicVar.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (var_decl
+          (kVar)))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+====
+Single Ident Var Declaration
+====
+
+MODULE BasicVar;
+  VAR MyConst : REAL ;
+END BasicVar.
+
+----
+
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (var_decl
+          (kVar)
+          (variable_declaration
+            (ident_list
+              (ident))
+            (type
+              (simple_type
+                (qualident
+                  qualifier_or_id: (ident)))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))

@@ -133,7 +133,8 @@ module.exports = grammar({
     //             | module_declaration
     declaration: $ => choice(
       $.const_declaration,
-      $.type_decl
+      $.type_decl,
+      $.var_decl
     ),
 
     // const_declaration = "CONST" {constant_declaration}
@@ -379,6 +380,20 @@ module.exports = grammar({
         seq($.kArray, $.kOf)
       ),
       $.qualident
+    ),
+
+    // var_decl = "VAR" {variable_declaration ";"}
+    var_decl: $ => seq(
+      $.kVar,
+      repeat($.variable_declaration)
+    ),
+
+    // variable_declaration = ident_list ":" type ";"
+    variable_declaration: $ => seq(
+      $.ident_list,
+      ":",
+      $.type,
+      ";"
     ),
 
     // expression = simple_expresion [relation simple_expression]
