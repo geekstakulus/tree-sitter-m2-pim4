@@ -1,0 +1,238 @@
+===
+Empty Record Type
+===
+MODULE RecordType;
+  TYPE
+    rec = RECORD END;
+  END RecordType.
+
+---
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (record_type
+                (kRecord)
+                (kEnd))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+
+===
+Single Field Record Type
+===
+MODULE RecordType;
+  TYPE
+    rec = RECORD 
+      field : INTEGER
+    END;
+  END RecordType.
+
+---
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (record_type
+                (kRecord)
+                  (field_list
+                    (basic_field_list
+                      (ident_list
+                        (ident))
+                      (type
+                        (simple_type
+                          (qualident
+                            qualifier_or_id: (ident))))))
+                (kEnd))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Field List Record Type
+===
+MODULE RecordType;
+  TYPE
+    rec = RECORD 
+      field, field2 : INTEGER
+    END;
+  END RecordType.
+
+---
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (record_type
+                (kRecord)
+                  (field_list
+                    (basic_field_list
+                      (ident_list
+                        (ident)
+                        (ident))
+                      (type
+                        (simple_type
+                          (qualident
+                            qualifier_or_id: (ident))))))
+                (kEnd))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Field Sequence Record Type
+===
+MODULE RecordType;
+  TYPE
+    rec = RECORD 
+      field, field2 : INTEGER;
+      field : REAL
+    END;
+  END RecordType.
+
+---
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (record_type
+                (kRecord)
+                  (field_list
+                    (basic_field_list
+                      (ident_list
+                        (ident)
+                        (ident))
+                      (type
+                        (simple_type
+                          (qualident
+                            qualifier_or_id: (ident))))))
+                  (field_list
+                    (basic_field_list
+                      (ident_list
+                        (ident))
+                      (type
+                        (simple_type
+                          (qualident
+                            qualifier_or_id: (ident))))))
+                (kEnd))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))
+
+===
+Field and CASE Sequence Record Type
+===
+MODULE RecordType;
+  TYPE
+    rec = RECORD 
+      field : REAL;
+      CASE : BOOLEAN OF
+        TRUE: x, y : INTEGER |
+        FALSE: z, t : REAL
+      END
+    END;
+  END RecordType.
+
+---
+(compilation_unit
+  (program_module
+    (program_module_header
+      (kModule)
+      modulename: (ident))
+    (block
+      (declaration
+        (type_decl
+          (kType)
+          (type_declaration
+            (ident)
+            (type
+              (record_type
+                (kRecord)
+                (field_list
+                  (basic_field_list
+                    (ident_list
+                      (ident))
+                    (type
+                      (simple_type
+                        (qualident
+                          qualifier_or_id: (ident))))))
+                (field_list
+                  (variant_field_list
+                    (kCase)
+                    (qualident
+                      qualifier_or_id: (ident))
+                    (kOf)
+                    (variant
+                      (case_label_list
+                        (case_labels
+                          (const_expression
+                            (simple_const_expr
+                              (const_term
+                                (const_factor
+                                  (qualident
+                                    qualifier_or_id: (ident))))))))
+                      (field_list
+                        (basic_field_list
+                          (ident_list
+                            (ident)
+                            (ident))
+                          (type
+                            (simple_type
+                              (qualident
+                                qualifier_or_id: (ident)))))))
+                    (variant
+                      (case_label_list
+                        (case_labels
+                          (const_expression
+                            (simple_const_expr
+                              (const_term
+                                (const_factor
+                                  (qualident
+                                    qualifier_or_id: (ident))))))))
+                      (field_list
+                        (basic_field_list
+                          (ident_list
+                            (ident)
+                            (ident))
+                          (type
+                            (simple_type
+                              (qualident
+                                qualifier_or_id: (ident)))))))
+                    (kEnd)))
+                (kEnd))))))
+      (kEnd))
+    (module_footer
+      modulename: (ident))))

@@ -33,7 +33,7 @@ const real_literal = seq(
 const identifier = seq(letter, repeat(choice(letter, digit)));
 
 module.exports = grammar({
-  name: "modula2_pim_4",
+  name: "m2pim4",
 
   extras: $ => [/\s/], // ignore whitespace
 
@@ -238,6 +238,7 @@ module.exports = grammar({
     type: $ => choice(
       $.simple_type,
       $.array_type,
+      $.record_type,
       $.set_type,
       $.pointer_type,
       $.procedure_type
@@ -278,6 +279,70 @@ module.exports = grammar({
       $.simple_type,
       $.kOf,
       $.type
+    ),
+
+    // record_type = "RECORD" [field_list] {"," field_list} "END"
+    record_type: $ => seq(
+      $.kRecord, 
+      seq(
+        optional($.field_list), 
+        repeat(seq(";", $.field_list)),
+        optional(";")
+      ),
+      $.kEnd
+    ),
+
+    // field_list = basic_field_list | variant_field_list
+    field_list: $ => choice(
+      $.basic_field_list,
+      $.variant_field_list
+    ),
+
+    // basic_field_list = ident_list ":" type
+    basic_field_list: $ => seq($.ident_list, ":", $.type),
+
+    // variant_field_list = "CASE" [ident] ":" qualident "OF" variant {"|" variant}
+    //                      ["ELSE" [field_list] {"," field_list}] "END"
+    variant_field_list: $ => seq(
+      $.kCase,
+      optional($.ident),
+      ":",
+      $.qualident,
+      $.kOf,
+      $.variant,
+      repeat(seq("|", $.variant)),
+      optional(
+        seq(
+          $.kElse,
+          optional($.field_list),
+          repeat(seq(";", $.field_list)),
+          optional(";")
+        )
+      ),
+      $.kEnd
+    ),
+
+    // variant = case_label_list ":" [field_list] {";" field_list}
+    variant: $ => seq(
+      $.case_label_list, 
+      ":", 
+      seq(
+        optional($.field_list),
+        repeat(seq(";", $.field_list)),
+        optional(";")
+      )
+    ),
+
+    // case_label_list = case_labels {"," case_labels}
+    case_label_list: $ => seq(
+      $.case_labels,
+      repeat(seq(",", $.case_labels))
+    ),
+
+    // case_labels = const_expression [".." const_expression]
+    case_labels: $ => seq(
+      $.const_expression,
+      optional(seq("..", $.const_expression))
     ),
 
     // set_type = "SET" "OF" simple_type
@@ -427,6 +492,8 @@ module.exports = grammar({
     kSet: $ => "SET",
     kVar: $ => "VAR",
 
+    kCase: $ => "CASE",
+    kElse: $ => "ELSE",
     kFrom: $ => "FROM",
     kType: $ => "TYPE",
 
@@ -436,6 +503,7 @@ module.exports = grammar({
 
     kImport: $ => "IMPORT",
     kModule: $ => "MODULE",
+    kRecord: $ => "RECORD",
 
     kPointer: $ => "POINTER",
 
